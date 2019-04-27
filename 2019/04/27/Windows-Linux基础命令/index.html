@@ -45,4 +45,149 @@ ping 192.168.11.1 -t  重复ping
 ping 127.0.0.1 | ipconfig  “”管道符“” 前    面会执行但不会显示，只显示后面  （ipconfig）
 </code></pre><p>.路径<br>    相对路径：相对某个文件或者文件夹    .\ 当前目录                    ..\   表示上级目录<br>    绝对路径：完整的，从根目录写起的路径</p>
 <pre><code>以点开头的文件默认情况下是隐藏文件
+</code></pre><p>   <strong>  </strong>Linux<em>**</em></p>
+<ol>
+<li><p>终端：shell解析器，终端接受用户输入的命令，然后把命令传输给系统内核，系统内核处理完再传给终端</p>
+</li>
+<li><p>Tab键  ：可将名补全<br> Ctrl+C   ：命令停止 ， 进入一个文件实在是不知道怎么出来时可以试试</p>
+<p> Ctrl+L  /  clear：清屏<br> exit   ：退出当前终端</p>
+<p> cd  :返回上层  或者 cd  ..  返回上层 cd -</p>
+<p> cd /   ：切换到跟目录 （有权限）<br> <em>cd  /home/root/Desktop/</em>   切换到桌面（root用户）</p>
+<pre><code>#是root管理员    $是访客
+</code></pre><p> Ctrl + u    清空至行首<br> Ctrl + k     情况至行末</p>
+</li>
+</ol>
+<ol start="3">
+<li><p><strong>sudo 以管理员运行命令</strong>  sudo   -i  或者  su root<br>su 切换用户  普通用户切换成root用户，比如toor用户换成su root用户<br>（如果su后什么也没写 表示切换到root 需要输入其         密码）<br>  showdatabases ：查看所有的数据库<br>  use 表面  ： 使用某个数据库<br>  show tables ：查看当前数据库下有哪些表<br>查看系统版本：  </p>
+<pre><code>uname -a (发布版本)
+uname -r (内核)
+</code></pre><p>reboot 重启  （需要root权限）<br>login  登录<br>half  立刻关机   shutdown -h 10/now 十分钟后关机/立刻关机（root用户使用）<br>sudo reboot  （没有root权限就这个）<br>init 0 关机<br>init 6  重启<br> Ctrl+shift+t/n   ：快速打开多个终端：前提先打开终端，xshell里用不了，        </p>
+</li>
+<li><p>cd /home/toor/Desktop/      ：桌面<br> ls  ： 列出当前的目录 后面可跟路径</p>
+<pre><code>ls /  :查看根目录下的文件
+</code></pre><p>ls -l   或者 ll ：列出当前目录下的所有文件的详细信息（不包含隐藏文件）可指定单个文件  比如   ls -l c:/test      ls -l test      ls-l /home</p>
+<p>ls -al  ：显示当前目录下的所有文件和目录（<strong>包括隐藏文件</strong>），后面可加文件名   (all)<br>ls -dl   ：只显示目录名称不显示内容，后面可加目录名或路径  ls -dl test    (dir))</p>
+</li>
+</ol>
+<ol start="5">
+<li>cd /切换到家目录： 就是一开始进入终端的那个位置！</li>
+<li><p>–pwd   ：查看当前工作的目录（当前用户所处的位置）<br>  – whereis   :查找命令（ping ls ifconfig等）具体所在的位置</p>
+<pre><code>比如：whereis ifconfig 查看ifconfig命令所在的位置
+</code></pre><p>  – which     查看软件相对位置 ：which php / which python/ which   ping<br>  –  hostname:机名</p>
+<pre><code>hostname cracer.com  (不要用，改名的，必须要root权限，一般权限只能改一下，重启会恢复)
+</code></pre><p>  – whoami        ：  查看当前用户<br>  – ifconfig         ：查看IP  （看网卡ens33/ech0的ip，可以改，看实际的）</p>
+<pre><code>--ifconfig echo 192.168.179.222
+  --ifconfig echo: 01 192.168.179.223/24
+  --ifconfig echo: 02 192.168.179.224/24
+</code></pre><p>  – ip addr=ip add =ip a      ：查看网卡（看网卡ens33/ech0的ip，可以改，看实际的）<br>  – netstat -ntulp   显示端口和程序名 PID </p>
+<pre><code>Windows ：   netstat -ano  （端口）
+</code></pre><p>  –route -n 查看路由</p>
+<p>  – man 显示命令相关的命令信息</p>
+<pre><code>man ping 
+</code></pre><p><strong>创建文件夹和文件</strong></p>
+</li>
+<li>创建文件夹<br>   mkdir /ichunqiu<br>   mkdir -p a/b/c  递归目录a里有b，b里有c</li>
+<li><p>创建test文件 （后缀可以不加）<br>   touch  test.txt   ：</p>
+</li>
+<li><p>写入文件：<br> echo 123 &gt;test.txt   将123写入test文件<br> <img src="en-resource://database/547:1" alt="bc44b0def77ebac3cbf243fa2fcd16a9.png"></p>
+<p>  echo “this is 51” &gt; /home/toor /Desktop/test.txt   不想敲路径就身处路径，把Desktop当做家目录，echo 和vi 文件 （文件不能cd进入！只能vi/vim打开文件和echo cat 写读！ 目录可以cd进）</p>
+</li>
+<li><p>读取文件 ：<br>  cat test.txt  ：cat查看文件内容</p>
+<pre><code>more 1.txt  ：部分读取 显示百分比按enter继续读取， 按q 退出
+</code></pre><p>  head  /文件   ：默认读取文件前十行<br>  head -n 6 /文件 ：读取前六行<br>  tail 文件  ：默认读取后十行<br>  tail -n 6 /文件 ：读取后六行</p>
+<p> du -sh /文件     查看文件大小</p>
+</li>
+<li><em>复制</em>：把文件copy进一个文件或文件夹里<br>cp 源文件位置  文件夹（目标路径）<br>cp test  /home/toor/Desktop/ 将文件test copy进桌面<br>cp test .txt  /Desktop 把文件复制到桌面</li>
+<li><ul>
+<li>移动*：mv  移动文件或文件夹<br>rm 源文件 文件夹（目标路径）</li>
+<li>改名字*： mv  源文件名  目标名<pre><code>mv test test.tar
+</code></pre></li>
+</ul>
+<ol start="7">
+<li></li>
+</ol>
+<p><em>删文件</em>：rm 文件（如果是目录就删不了）</p>
+<pre><code>rm -r   把整个文件夹都删除（回复** y**，回车是不删，有提示）
+ rm -f  
+ rm -rf 文件名（可能会把一些驱动删掉，会导致系统崩溃）
+</code></pre><p><strong>** rm / :删除所有文件，电脑就凉了</strong> </p>
+<p>查看<strong>防火墙</strong>状态<br><img src="en-resource://database/430:1" alt="d362327732ee684c38da3292fd893672.png"><br>service firewalld status(runnin  ：开启状态)<br>service firewalld stop 关闭<br>service firewalld start 开启<br>Centos7： systemctl status/start/stop firewalld.service<br>/etc/init.d/*.status   查看状态  /etc/init.d/mysql.status</p>
+</li>
+</ol>
+<p>.  <strong>find</strong>  查找文件<br>    find -help</p>
+<pre><code>**查找文件和文件夹**
+   **想进入一个目录可以先find到这个文件夹目录**
+find ~ -name  文件夹和文件 （范围小）
+find / -name+文件夹或者文件 （范围大）    ：通过名称来查找， 显示文件夹或文件具体    路径
+两个换着用,一个不行换另一个
+
+find / -user 一个目录  ：查找该目录下的文件
+
+find 路径 【-name/-type/-size/-time(时，分，秒)】   文件名（* ？）
+
+find  ~ 文件夹（目录）（不给路径，就在当前寻找） 
+
+find ./ -size  -2m (杠2，减2m)
+find ./ -size  +2m
+find ./ -type l  （杠type，L）
+</code></pre><p>   <strong>grep</strong>    在文件中<strong>查找关键信息**</strong><br>      cat test.txt |grep 1  进入一个文件，读取文件test.txt是否有1<br>      grep 1 test.txt     指定文件查找 （必须在文件所在的目录下）<br>      grep 1 /home/toor/test.txt   在具体路径里找 (必须知道文件所在目录的绝对路径，可以 利用find方法–&gt;    find ~ -name 12)<br>  <strong> *</strong>vi /vim<strong>   文本编辑器*</strong><br> 两者都可以打开文件，如果一种没打开可以试试另外的一种<br>       vi 文件   ：文件已存在会打开，没有会创建。出不来就强制退出：{ ：q!}<br>       vim 文件 ：（vim hacker 打开的不能是目录）<br>       **【不在编辑状态：按 d +四个方向键，控制删除目标（上下是本行全删，左右只删除一个目标）</p>
+<pre><code>   按 i，o进入编辑状态，不能按方向键，正常的空格
+
+** ** wq和q不行就强制退出，wq！和q！****
+   】**
+</code></pre><p>打开文件，默认是命令模式。按以下键可以进入编辑模式：i    #光标所在位置插入I    #光标所在行行首</p>
+<p>   在编辑模式下，左下角显示插入，按esc退出编辑模式，执行命令可进行相应操作：：q    #退出：q！  #强制退出，不     保存：wq   #保存退出：wq！ #强制保存退出回车执行</p>
+<pre><code>* &lt;u&gt;* **vim**工作模式（ESC通用） *&lt;/u&gt;*
+</code></pre><p>1   命令模式：对文档进行编写， 打开一个文件就是。–&gt;按“iao”进入输入模式–&gt;写完后，按ESC，左下角插入字样消失，此时可输入–&gt;“ ：q ”不保存退出–&gt;输入   “：wq=：x”保存退出 </p>
+<ol start="2">
+<li><p>输入模式： 可以输入数据的模式，六种方法：i（在光标位置输入） a(光标后一位输入) o（另起一行输入） I A O。按ESC退出  </p>
+</li>
+<li><p>底部命令模式： 通过直接到底部用命令去控制整个文档。进入命令模式下–&gt;按“：”即可   进入该模式，并且编写–&gt;  “：set nu”  设置行号 –&gt;   可直接按“：”进行下一步编写命   令–&gt;“：set nonu”  取消行号   –&gt; “：w”保存内容   –&gt; ：q ！”不保存退出       –&gt; ：wq”保存退出 </p>
+</li>
+<li><p>在vim编辑器中找数据   （在命令模式中进行，打开一个文件就是命令模式）<br> /key_word   注意光标位置，只选取光标后的第一个关键词</p>
+<p>  n    按n会寻找下一个关键词<br><strong> </strong> <strong><strong>Linux权限<em>**</em></strong></strong></p>
+<pre><code>Ctrl+C 退出当前命令
+</code></pre><p>权限<br>第一列中共有10位<br> 第一位表示文件类型：</p>
+<pre><code>d 这是目录
+l 链接文件
+- 二进制文件（文本文件）
+</code></pre><p>  第2-4位表示当前文件所有者的权限 r（读）4     w（写）2      x（执行）1<br>  第5-7位表示当前文件所有组的权限   r-x<br>  第8-10表示其他人对文件的权限      r-x<br>   例：</p>
+<pre><code>l --x  r-x --x    151
+   链接文件，所有者的权限-执行， 所有组的权限--读取和执行，其他人的-执行
+按照读写执行 固定顺序，有间隔就用-   最高7=4+2+1：
+      341  -wx  r--  --x   
+      756  rwx  r-x rw-
+</code></pre></li>
+</ol>
+<pre><code>     **  Linux 用户管理****
+
+用户信息存在       /etc/passwd       find / -name passwd  --&gt;  cat  /etc/passwd/
+用户密码存储在    /etc/shadow      find / -name shadow  --&gt;  cat  /etc/shadow/
+  真正的用户:可以修改密码，可以登录
+  伪用户：一些程序在启动过程中需要以某种权限来运行，使用某种程序名存储在passwd文                 件中
+  ![284e0d36edfd0ce303c255a93d337d6a.png](en-resource://database/444:1)
+  如果把最后一部分改为： /sbin/nologin ，那么用户就不能登录了
+  test：x：1001:1001：TEST:/home/test：/bin/bash  七段要全
+
+* 用户密码*存储在    /etc/shadow      真正的密码
+  ls -l /etc/shadow  查看文件详细内容
+  cat /etc/passwd |grep root
+</code></pre><p>加用户和密码  ：<br>        useradd  需添加的用户名   –&gt; 不行就 sudo useradd 需添加的用户名<br>              grep hack(用户名) /etc/passwd<br>              at /etc/pass<br>        userdel 用户   : 删除用户<br>        passwd  用户—&gt;会提示输入密码                       sudo passwd 用户</p>
+<pre><code>查看和添加组：
+  groups   ：查看当前用户是哪个组，  whoami ：root用户属于 root组
+         cat /etc/gro   会提示有多个gro相关的
+  groupadd  组名   ：添加组
+  groupdel  组名    ：删除组
+
+ gpasswd -a test hack   向hack组中添加用户test， add  
+ gpasswd -d test hack   删除 del
+
+ ** linux 内存管理**
+</code></pre><p>   ps    查看进程<br>      -u   -l    查看隶属于当前用户的进程信息<br>      -aux    所有用户的详细信息<br>               ps -aux |grep apache  查看数据库Apache的详细信息<br>       -le |grep redis   查看指定的程序和进程信息 </p>
+<pre><code>kill 关闭某个进程
+  kill  PID  选择id号   
+     kill  54916
+ kill -9 强制
+ xkill 关闭图形程序
+ killall 关闭所有程序
 </code></pre></div><div class="tags"></div><div class="post-nav"><a class="next" href="/2019/04/13/博客搭建/">博客搭建</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="http://yoursite.com"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Categories</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> Recent</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/04/27/Windows-Linux基础命令/">Windows,Linux基础命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/13/博客搭建/">博客搭建</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Links</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2019 <a href="/." rel="nofollow">00cream00's Blog.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
